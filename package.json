@@ -1,0 +1,21 @@
+{
+  "name": "arx-level-json-prettier",
+  "version": "0.0.1",
+  "description": "Optimizes the raw JSON made by arx-level-json-converter for editing",
+  "main": "src/index.mjs",
+  "scripts": {
+    "start": "node --experimental-modules src/index.mjs",
+    "test:console": "cat test/dummy.json | npm run --silent start | xargs echo -e",
+    "test:file": "cat test/dummy.json | npm run --silent start > e:/pretty.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettier.git"
+  },
+  "author": "Lajos Meszaros <m_lajos@hotmail.com>",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettier/issues"
+  },
+  "homepage": "https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettier#readme"
+}
