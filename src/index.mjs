@@ -1,20 +1,22 @@
-const readPipe = () => new Promise((resolve, reject) => {
-  const stdin = process.openStdin()
-
-  let rawInput = ''
-
-  stdin.on('data', chunk => {
-    rawInput += chunk
+const streamToBuffer = input => new Promise((resolve, reject) => {
+  const chunks = []
+  input.on('data', chunk => {
+    chunks.push(chunk)
   })
-
-  stdin.on('end', () => {
-    try {
-      resolve(JSON.parse(rawInput))
-    } catch (error) {
-      reject(error)
-    }
+  input.on('end', () => {
+    resolve(Buffer.concat(chunks))
+  })
+  input.on('error', e => {
+    reject(e)
   })
 })
+
+const readPipe = async () => {
+  const stdin = process.openStdin()
+  const rawInput = await streamToBuffer(stdin)
+
+  return JSON.parse(rawInput)
+}
 
 const writePipe = data => {
   console.log(data)
