@@ -1,13 +1,13 @@
 {
   "name": "arx-level-json-prettify",
   "version": "0.0.1",
-  "description": "Optimizes the raw JSON made by arx-level-json-converter for editing",
-  "main": "src/index.mjs",
-  "scripts": {
-    "start": "node --experimental-modules src/index.mjs",
-    "test:console": "cat test/dummy.json | npm run --silent start | xargs echo -e",
-    "test:file": "cat test/dummy.json | npm run --silent start > e:/pretty.json"
+  "description": "Optimizes the raw JSON made by arx-level-json-converter",
+  "bin": {
+    "prettify": "bin/prettify-json.mjs",
+    "uglify": "bin/uglify-json.mjs"
   },
+  "main": "src/index.mjs",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettify.git"
@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettify/issues"
   },
-  "homepage": "https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettify#readme"
+  "homepage": "https://github.com/meszaros-lajos-gyorgy/arx-level-json-prettify#readme",
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "ramda": "^0.27.1"
+  }
 }
