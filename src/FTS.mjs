@@ -1,4 +1,4 @@
-import { evolve, splitEvery, map } from '../node_modules/ramda/src/index.mjs'
+import { evolve, splitEvery, map, flatten } from '../node_modules/ramda/src/index.mjs'
 import { roundToNDecimals } from './helpers.mjs'
 
 export default class FTS {
