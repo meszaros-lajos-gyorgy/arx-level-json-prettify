@@ -21,7 +21,7 @@ export default class FTS {
     delete json.sceneHeader.sizeZ
 
     // TODO: make this optional with a flag, because this is a one way transformation
-    json = this.roundNumbers(json)
+    json = this.roundNumbers(json, 3)
 
     json.cells = splitEvery(sizeZ, json.cells)
 
