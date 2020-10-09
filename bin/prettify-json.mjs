@@ -8,41 +8,41 @@ import { fileExists, getPackageVersion, streamToBuffer } from './helpers.mjs'
 const args = minimist(process.argv.slice(2), {
   string: ['output'],
   boolean: ['version', 'pretty']
-})
+});
 
-if (args.version) {
-  console.log(getPackageVersion())
-  process.exit(0)
-}
-
-let filename = args._[0]
-let output = args.output
-
-let hasErrors = false
-
-let input
-if (filename) {
-  if (fileExists(filename)) {
-    input = fs.createReadStream(filename)
-  } else {
-    console.error('error: input file does not exist')
-    hasErrors = true
+(async () => {
+  if (args.version) {
+    console.log(await getPackageVersion())
+    process.exit(0)
   }
-} else {
-  input = process.openStdin()
-}
 
-if (output) {
-  output = fs.createWriteStream(output)
-} else {
-  output = process.stdout
-}
+  let filename = args._[0]
+  let output = args.output
 
-if (hasErrors) {
-  process.exit(1)
-}
+  let hasErrors = false;
 
-; (async () => {
+  let input
+  if (filename) {
+    if (await fileExists(filename)) {
+      input = fs.createReadStream(filename)
+    } else {
+      console.error('error: input file does not exist')
+      hasErrors = true
+    }
+  } else {
+    input = process.openStdin()
+  }
+
+  if (output) {
+    output = fs.createWriteStream(output)
+  } else {
+    output = process.stdout
+  }
+
+  if (hasErrors) {
+    process.exit(1)
+  }
+
   const json = JSON.parse(await streamToBuffer(input))
 
   let prettifiedJSON
