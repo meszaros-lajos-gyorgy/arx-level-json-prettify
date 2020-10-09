@@ -1,6 +1,6 @@
 {
   "name": "arx-level-json-prettify",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Optimizes the raw JSON made by arx-level-json-converter",
   "bin": {
     "prettify": "bin/prettify-json.mjs",
